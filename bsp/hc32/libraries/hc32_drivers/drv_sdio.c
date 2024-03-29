@@ -54,7 +54,7 @@ struct rthw_sdio
 #endif
 
 #ifndef SDIO_MAX_FREQ
-    #define SDIO_MAX_FREQ           (50*1000*1000)
+    #define SDIO_MAX_FREQ           (30*1000*1000)
 #endif
 
 #define RTHW_SDIO_LOCK(_sdio)   rt_mutex_take(&(_sdio)->mutex, RT_WAITING_FOREVER)
@@ -985,7 +985,7 @@ static struct rt_mmcsd_host *_sdio_host_create(struct hc32_sdio_config *config,
 
     /* set host default attributes */
     host->ops = &_mmcsd_host_ops;
-    host->freq_min = 400 * 1000;
+    host->freq_min = 1000 * 1000;
     host->freq_max = SDIO_MAX_FREQ;
     host->valid_ocr = VDD_26_27 | VDD_27_28 | VDD_28_29 | VDD_29_30 | VDD_30_31 | VDD_31_32 | VDD_32_33 | VDD_33_34;/* The voltage range supported is 2.6v-3.4v */
     host->valid_ocr = VDD_32_33 | VDD_33_34;
